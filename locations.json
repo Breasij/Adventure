@@ -1,0 +1,57 @@
+{
+    "regions": {
+      "Kingdom of Lorum": {
+        "description": "A grand medieval kingdom known for its rich history and a new king on the throne.",
+        "locations": {
+          "Arena": {
+            "description": "A large, sand-covered arena surrounded by roaring spectators.",
+            "exits": { "north": "Marketplace" },
+            "enemies": ["Goblin", "Orc", "Skeleton", "Wolf", "Arena Champion"]
+          },
+          "Marketplace": {
+            "description": "A bustling market square full of merchants and adventurers.",
+            "exits": { "south": "Arena", "east": "Tavern" },
+            "enemies": []
+          },
+          "Tavern": {
+            "description": "A warm, crowded tavern filled with adventurers and local gossip.",
+            "exits": { "west": "Marketplace" },
+            "enemies": [],
+            "npc": {
+              "name": "Bartender",
+              "dialogue": "Have you heard about the beast terrorizing the villages nearby?"
+            }
+          },
+          "Castle Lorum": {
+            "description": "The grand castle where the new King Ipsum rules with an iron fist.",
+            "exits": { "south": "Marketplace" },
+            "npc": {
+              "name": "King Ipsum",
+              "dialogue": "Welcome, warrior. I have a task for you."
+            }
+          }
+        }
+      },
+      "Wilderness": {
+        "description": "A vast, untamed land beyond the kingdom, filled with dangers and mysteries.",
+        "locations": {
+          "Forest": {
+            "description": "A dense forest filled with unknown creatures lurking in the shadows.",
+            "exits": { "east": "Mountain Path" },
+            "enemies": ["Wolf", "Bandit"]
+          },
+          "Mountain Path": {
+            "description": "A dangerous path leading up the mountain, where bandits often roam.",
+            "exits": { "west": "Forest", "north": "Cave Entrance" },
+            "enemies": ["Bandit"]
+          },
+          "Cave Entrance": {
+            "description": "A dark cave rumored to house ancient horrors.",
+            "exits": { "south": "Mountain Path" },
+            "enemies": ["Orc", "Skeleton"]
+          }
+        }
+      }
+    }
+  }
+  
