@@ -1,0 +1,29 @@
+{
+  "weapons": {
+    "Rusty Sword": {
+      "name": "Rusty Sword",
+      "damage_dice": [1, 6],
+      "damage_bonus": 1,
+      "description": "An old sword with a rusty blade. Not very sharp."
+    },
+    "Steel Axe": {
+      "name": "Steel Axe",
+      "damage_dice": [1, 8],
+      "damage_bonus": 2,
+      "description": "A reliable steel axe, capable of dealing serious damage."
+    }
+  },
+  "potions": {
+    "Health Potion": {
+      "name": "Health Potion",
+      "healing": 20,
+      "description": "Restores 20 health points when used."
+    }
+  },
+  "misc": {
+    "Rope": {
+      "name": "Rope",
+      "description": "Useful for climbing and binding things."
+    }
+  }
+}
