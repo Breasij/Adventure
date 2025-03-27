@@ -1,37 +1,114 @@
 {
-    "enemies": {
-      "Skeleton": {
-        "name": "Skeleton",
-        "hp": 10,
-        "ac": 13,
-        "attack_bonus": 4,
-        "damage_dice": [1, 6],
-        "damage_bonus": 2,
-        "description": "A reanimated skeleton with a chipped sword.",
-        "resistances": ["Piercing"],
-        "weaknesses": ["Bludgeoning"]
+  "enemies": {
+      "Goblin": {
+          "name": "Goblin",
+          "hp": 7,
+          "ac": 15,
+          "attack_bonus": 4,
+          "damage_dice": [1, 6],
+          "damage_bonus": 2,
+          "description": "A small, sneaky humanoid with a crude dagger.",
+          "resistances": [],
+          "weaknesses": ["Slashing"]
       },
       "Orc": {
-        "name": "Orc",
-        "hp": 15,
-        "ac": 13,
-        "attack_bonus": 4,
-        "damage_dice": [1, 8],
-        "damage_bonus": 2,
-        "description": "A muscular orc carrying a heavy battle axe.",
-        "resistances": [],
-        "weaknesses": []
+          "name": "Orc",
+          "hp": 15,
+          "ac": 13,
+          "attack_bonus": 5,
+          "damage_dice": [1, 8],
+          "damage_bonus": 3,
+          "description": "A muscular orc wielding a heavy battle axe.",
+          "resistances": [],
+          "weaknesses": []
+      },
+      "Skeleton": {
+          "name": "Skeleton",
+          "hp": 13,
+          "ac": 13,
+          "attack_bonus": 4,
+          "damage_dice": [1, 6],
+          "damage_bonus": 2,
+          "description": "A reanimated skeleton with a chipped sword.",
+          "resistances": ["Piercing"],
+          "weaknesses": ["Bludgeoning"]
+      },
+      "Zombie": {
+          "name": "Zombie",
+          "hp": 22,
+          "ac": 8,
+          "attack_bonus": 3,
+          "damage_dice": [1, 6],
+          "damage_bonus": 1,
+          "description": "A slow-moving undead with rotting flesh.",
+          "resistances": ["Poison"],
+          "weaknesses": ["Radiant"]
       },
       "Wolf": {
-        "name": "Wolf",
-        "hp": 12,
-        "ac": 13,
-        "attack_bonus": 4,
-        "damage_dice": [1, 6],
-        "damage_bonus": 2,
-        "description": "A feral wolf with sharp teeth.",
-        "resistances": [],
-        "weaknesses": ["Slashing"]
+          "name": "Wolf",
+          "hp": 11,
+          "ac": 13,
+          "attack_bonus": 4,
+          "damage_dice": [1, 6],
+          "damage_bonus": 2,
+          "description": "A feral wolf with sharp teeth.",
+          "resistances": [],
+          "weaknesses": ["Slashing"]
+      },
+      "Bandit": {
+          "name": "Bandit",
+          "hp": 11,
+          "ac": 12,
+          "attack_bonus": 3,
+          "damage_dice": [1, 6],
+          "damage_bonus": 1,
+          "description": "A rogue highwayman looking for easy prey.",
+          "resistances": [],
+          "weaknesses": []
+      },
+      "Giant Spider": {
+          "name": "Giant Spider",
+          "hp": 26,
+          "ac": 14,
+          "attack_bonus": 5,
+          "damage_dice": [1, 8],
+          "damage_bonus": 3,
+          "description": "A monstrous spider with venomous fangs.",
+          "resistances": ["Poison"],
+          "weaknesses": ["Fire"]
+      },
+      "Kobold": {
+          "name": "Kobold",
+          "hp": 5,
+          "ac": 12,
+          "attack_bonus": 4,
+          "damage_dice": [1, 4],
+          "damage_bonus": 2,
+          "description": "A small, dragon-like humanoid with a spear.",
+          "resistances": [],
+          "weaknesses": ["Bludgeoning"]
+      },
+      "Hobgoblin": {
+          "name": "Hobgoblin",
+          "hp": 11,
+          "ac": 18,
+          "attack_bonus": 3,
+          "damage_dice": [1, 8],
+          "damage_bonus": 1,
+          "description": "A disciplined and well-armored warrior.",
+          "resistances": [],
+          "weaknesses": []
+      },
+      "Mimic": {
+          "name": "Mimic",
+          "hp": 58,
+          "ac": 12,
+          "attack_bonus": 5,
+          "damage_dice": [1, 8],
+          "damage_bonus": 3,
+          "description": "A shapeshifting creature disguised as a treasure chest.",
+          "resistances": ["Bludgeoning"],
+          "weaknesses": ["Fire"]
       }
-    }
   }
+}
