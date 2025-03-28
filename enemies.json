@@ -109,6 +109,24 @@
           "description": "A shapeshifting creature disguised as a treasure chest.",
           "resistances": ["Bludgeoning"],
           "weaknesses": ["Fire"]
-      }
+      },
+    "Slime": {
+        "name": "Slime",
+        "hp": 15,
+        "ac": 10,
+        "attack_bonus": 3,
+        "damage_dice": [1, 6],
+        "damage_bonus": 1,
+        "description": "A weak gelatinous creature known by many beginner adventurers. Often found in caves and dungeons.",
+        "resistances": ["Bludgeoning", "Poison"],
+        "weaknesses": ["Fire", "Ice", "Electric"],
+        "special_abilities": [
+            {
+                "name": "Split",
+                "description": "When the Slime is hit by a slashing weapon or spell, it splits into two smaller slimes, each with half of its HP (rounded down).",
+                "chance": "20%"
+            }
+        ]
+    }
   }
 }
