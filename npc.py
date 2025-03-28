@@ -7,27 +7,51 @@ def npc_greeting(npc, player_name):
     personality = npc.get("personality", "friendly")
     role = npc.get("role", "local")
     location = npc.get("location", "area")
+    voice = npc.get("voice", "natural and in-character")
 
     prompt = (
-        f"{npc['name']} is a {personality} {role} in the {location}. "
-        f"The adventurer {player_name} walks in. {npc['name']} greets {player_name} warmly, possibly mentioning: '{dialogue}'.\n\n"
-        f"{npc['name']} says:"
+        f"You are {npc['name']}, a {personality} {role} in the {location}. "
+        f"Speak in a {voice} voice. "
+        f"The adventurer {player_name} just entered. "
+        f"Greet them naturally and warmly. You might say something like: \"{dialogue}\". "
+        "Respond directly as if you were there. Do not introduce yourself. Do not mention being a character or NPC."
     )
+
     response = query_llm(prompt)
     return response.strip() if response else dialogue
 
-def npc_conversation(npc, player_input, player_name):
+
+def npc_conversation(npc, player_input, player_name, history=None):
     personality = npc.get("personality", "friendly")
     role = npc.get("role", "local")
     location = npc.get("location", "area")
+    voice = npc.get("voice", "natural")
 
+    if history is None:
+        history = []
+
+    # Add the latest player input to the history
+    history.append(f"{player_name}: {player_input}")
+
+    # Build conversation prompt
     prompt = (
-        f"{npc['name']} is a {personality} {role} in the {location}. "
-        f"The adventurer {player_name} says: '{player_input}'.\n\n"
-        f"{npc['name']} replies:"
+        f"You are {npc['name']}, a {personality} {role} in the {location}. "
+        f"Speak in a {voice} voice. Respond as if you are speaking directly to {player_name}. "
+        f"Never mention being an NPC, AI, or simulation.\n\n"
+        f"Here is the conversation so far:\n"
     )
+    prompt += "\n".join(history)
+    prompt += f"\n{npc['name']} replies:"
+
     response = query_llm(prompt)
-    return response.strip() if response else "Hmm, can't say I know about that."
+    if response:
+        history.append(f"{npc['name']}: {response.strip()}")
+    else:
+        history.append(f"{npc['name']}: I'm not sure what to say to that.")
+
+    return response.strip() if response else "I'm not sure what to say to that.", history
+
+
 
 
 

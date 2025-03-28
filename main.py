@@ -65,7 +65,6 @@ def manage_inventory(player):
         else:
             print("Invalid input.")
 
-# Handle player movement and location interactions
 def move_player(direction):
     global current_location, current_location_name, current_region
     exits = current_location.get("exits", {})
@@ -89,6 +88,8 @@ def move_player(direction):
         greeting = npc_greeting(npc, player.name)
         print(f"\n🧙 {npc['name']} says: '{greeting}'")
 
+        conversation_history = [f"{npc['name']}: {greeting}"]
+
         if "shop" in npc:
             merchant_interaction(player, npc)
 
@@ -97,8 +98,8 @@ def move_player(direction):
             interact_choice = input(f"Do you want to speak further with {npc['name']}? (y/n): ").lower()
             if interact_choice == 'y':
                 player_input = input(f"What do you say to {npc['name']}?: ")
-                response = npc_conversation(npc, player_input, player.name)
-                print(f"\n🧙 {npc['name']} replies: '{response}'")
+                reply, conversation_history = npc_conversation(npc, player_input, player.name, conversation_history)
+                print(f"\n🧙 {npc['name']} replies: '{reply}'")
             elif interact_choice == 'n':
                 print(f"You end your conversation with {npc['name']}.")
                 break
@@ -109,6 +110,7 @@ def move_player(direction):
     enemy = generate_enemy_encounter(current_location)
     if enemy:
         combat_sequence(player, enemy)
+
 
 # Main gameplay loop
 def game_loop():

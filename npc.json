@@ -3,30 +3,24 @@
     "name": "Bartender",
     "location": "Tavern",
     "role": "tavernkeeper",
-    "personality": "Friendly, talkative, humorous, knowledgeable about local rumors.",
+    "personality": "friendly, talkative, humorous",
+    "voice": "casual and warm",
     "dialogue": ["Welcome to my tavern! What will you have?"]
   },
   "King Ipsum": {
     "name": "King Ipsum",
     "location": "Castle Lorum",
     "role": "king",
-    "personality": "Authoritative, dignified, slightly distant but genuinely concerned.",
+    "personality": "commanding, wise, dignified",
+    "voice": "formal and authoritative",
     "dialogue": ["Welcome, warrior. I have a task for you."]
   },
   "Merchant": {
     "name": "Merchant",
     "location": "Marketplace",
     "role": "merchant",
-    "personality": "Clever, persuasive, friendly but business-minded.",
-    "dialogue": ["Interested in fine goods?"],
-    "shop": {
-      "items": ["Health Potion", "Rusty Sword", "Steel Axe", "Rope"],
-      "prices": {
-        "Health Potion": 50,
-        "Rusty Sword": 25,
-        "Steel Axe": 75,
-        "Rope": 10
-      }
-    }
+    "personality": "clever, persuasive, energetic",
+    "voice": "salesy and friendly",
+    "dialogue": ["Looking for something special? I've got the best goods in the realm!"]
   }
 }
