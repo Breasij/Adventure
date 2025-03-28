@@ -4,7 +4,7 @@ from enemy import Enemy
 from combat import combat_sequence
 from quest import generate_quest
 from llm_api import query_llm
-from npc import npc_greeting, npc_conversation, merchant_interaction
+from npc_system import npc_greeting, npc_conversation, merchant_interaction
 from items import get_item
 
 # Load data from JSON files
@@ -71,6 +71,7 @@ def move_player(direction):
     if direction not in exits:
         print("You can't go that way!")
         return
+
     new_location_name = exits[direction]
 
     for region in REGIONS.values():
@@ -82,35 +83,40 @@ def move_player(direction):
 
     print(f"\nYou arrive at {current_location_name}. {current_location['description']}")
 
-    # NPC interactions
+    # 🔍 Get NPCs in this location
     npcs_here = [npc for npc in NPCS.values() if npc["location"] == current_location_name]
+
     for npc in npcs_here:
+        # Safely cast mood to numeric if needed
+        try:
+            npc["mood"] = float(npc.get("mood", 0))
+        except (ValueError, TypeError):
+            npc["mood"] = 0
+
         greeting = npc_greeting(npc, player.name)
-        print(f"\n🧙 {npc['name']} says: '{greeting}'")
+        print(f"\n🤙 {npc['name']} says: '{greeting}'")
 
         conversation_history = [f"{npc['name']}: {greeting}"]
 
         if "shop" in npc:
             merchant_interaction(player, npc)
 
-        # Further conversation option
         while True:
             interact_choice = input(f"Do you want to speak further with {npc['name']}? (y/n): ").lower()
             if interact_choice == 'y':
                 player_input = input(f"What do you say to {npc['name']}?: ")
                 reply, conversation_history = npc_conversation(npc, player_input, player.name, conversation_history)
-                print(f"\n🧙 {npc['name']} replies: '{reply}'")
+                print(f"\n🤙 {npc['name']} replies: '{reply}'")
             elif interact_choice == 'n':
                 print(f"You end your conversation with {npc['name']}.")
                 break
             else:
                 print("Please choose 'y' or 'n'.")
 
-    # Enemy encounters
+    # ☘️ Enemy encounter (once per move)
     enemy = generate_enemy_encounter(current_location)
     if enemy:
         combat_sequence(player, enemy)
-
 
 # Main gameplay loop
 def game_loop():

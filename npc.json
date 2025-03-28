@@ -3,24 +3,61 @@
     "name": "Bartender",
     "location": "Tavern",
     "role": "tavernkeeper",
-    "personality": "friendly, talkative, humorous",
-    "voice": "casual and warm",
-    "dialogue": ["Welcome to my tavern! What will you have?"]
+    "personality": "grumpy",
+    "mood": -2,
+    "voice": "rough and sarcastic",
+    "dialogue": [
+      "What do you want?",
+      "You here to drink or talk?",
+      "No tabs. You pay now or you don't drink."
+    ],
+    "inventory": {
+      "Ale": { "price": 5, "stock": 10 },
+      "Whiskey": { "price": 12, "stock": 5 }
+    }
   },
   "King Ipsum": {
     "name": "King Ipsum",
     "location": "Castle Lorum",
     "role": "king",
-    "personality": "commanding, wise, dignified",
-    "voice": "formal and authoritative",
-    "dialogue": ["Welcome, warrior. I have a task for you."]
+    "personality": "serious",
+    "mood": 0,
+    "voice": "formal and commanding",
+    "dialogue": [
+      "State your business, adventurer.",
+      "What news do you bring?",
+      "Do not waste my time with trivial matters."
+    ]
   },
   "Merchant": {
     "name": "Merchant",
     "location": "Marketplace",
     "role": "merchant",
-    "personality": "clever, persuasive, energetic",
-    "voice": "salesy and friendly",
-    "dialogue": ["Looking for something special? I've got the best goods in the realm!"]
+    "personality": "jovial",
+    "mood": 4,
+    "voice": "bubbly and fast-talking",
+    "dialogue": [
+      "Step right up! The best deals in town!",
+      "Buy now or miss out forever!",
+      "Everything must go—except me!"
+    ],
+    "inventory": {
+      "Health Potion": { "price": 15, "stock": 8 },
+      "Lockpick": { "price": 3, "stock": 20 },
+      "Magic Scroll": { "price": 30, "stock": 3 }
+    }
+  },
+  "Old Sage": {
+    "name": "Old Sage",
+    "location": "Tower of Wisdom",
+    "role": "wise man",
+    "personality": "friendly",
+    "mood": 2,
+    "voice": "calm and mystical",
+    "dialogue": [
+      "Knowledge is power, and I have plenty.",
+      "The stars whisper secrets to those who listen.",
+      "Speak, seeker of wisdom. I am listening."
+    ]
   }
 }
