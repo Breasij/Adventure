@@ -5,27 +5,31 @@ from items import get_item, ITEMS  # ← Add ITEMS import here!
 def npc_greeting(npc, player_name):
     dialogue = random.choice(npc["dialogue"])
     personality = npc.get("personality", "friendly")
+    role = npc.get("role", "local")
+    location = npc.get("location", "area")
+
     prompt = (
-        f"You are {npc['name']}, a character in the {npc['location']} of a medieval fantasy world. "
-        f"You have a '{personality}' personality. The adventurer '{player_name}' has just entered. "
-        f"Greet them warmly, naturally, and immersively, possibly mentioning: '{dialogue}'. "
-        "NEVER mention being an NPC or AI."
+        f"{npc['name']} is a {personality} {role} in the {location}. "
+        f"The adventurer {player_name} walks in. {npc['name']} greets {player_name} warmly, possibly mentioning: '{dialogue}'.\n\n"
+        f"{npc['name']} says:"
     )
     response = query_llm(prompt)
     return response.strip() if response else dialogue
 
-
 def npc_conversation(npc, player_input, player_name):
     personality = npc.get("personality", "friendly")
+    role = npc.get("role", "local")
+    location = npc.get("location", "area")
+
     prompt = (
-        f"You are {npc['name']}, a character living in the medieval fantasy world, currently in {npc['location']}. "
-        f"You have a '{personality}' personality. "
-        f"The adventurer '{player_name}' just said to you: '{player_input}'. "
-        f"Respond ONLY as {npc['name']} would in this situation, naturally and in-character. "
-        "NEVER break character or mention being an NPC, AI, or chatbot under any circumstances."
+        f"{npc['name']} is a {personality} {role} in the {location}. "
+        f"The adventurer {player_name} says: '{player_input}'.\n\n"
+        f"{npc['name']} replies:"
     )
     response = query_llm(prompt)
-    return response.strip() if response else "Hmm, I don't know much about that."
+    return response.strip() if response else "Hmm, can't say I know about that."
+
+
 
 
 def merchant_interaction(player, merchant):
