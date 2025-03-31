@@ -1,6 +1,7 @@
 import random
 from enemy import EnemyData
 
+
 def combat_sequence(player, enemy): 
     print(f"A wild {enemy.name} appears! ({enemy.hp} HP) - {enemy.description}")
 
@@ -8,7 +9,6 @@ def combat_sequence(player, enemy):
         action = input("Do you [A]ttack or [R]un? ").lower()
         
         if action == 'a':
-            # Simulate an attack roll: 1d20 + attack_bonus vs. enemy's AC
             attack_roll = random.randint(1, 20) + player.attack_power
             print(f"You roll a {attack_roll} to attack (Enemy AC: {enemy.ac})")
 
@@ -26,7 +26,6 @@ def combat_sequence(player, enemy):
             else:
                 print("Escape failed!")
 
-        # Enemy turn if still alive
         if enemy.hp > 0:
             enemy_damage = enemy.attack()
             player.hp -= enemy_damage
@@ -36,3 +35,13 @@ def combat_sequence(player, enemy):
         print("You were defeated...")
     else:
         print(f"You defeated the {enemy.name}!")
+        # Handling drops after combat:
+        if enemy.drops:
+            print("You search the enemy and find:")
+            for item_name, drop_info in enemy.drops.items():
+                if random.random() <= drop_info['chance']:
+                    quantity = random.randint(drop_info['quantity'][0], drop_info['quantity'][1])
+                    player.inventory[item_name] = player.inventory.get(item_name, 0) + quantity
+                    print(f"- {quantity} x {item_name}")
+                else:
+                    print(f"- No {item_name} this time.")

@@ -1,132 +1,199 @@
 {
-  "enemies": {
-      "Goblin": {
-          "name": "Goblin",
-          "hp": 7,
-          "ac": 15,
-          "attack_bonus": 4,
-          "damage_dice": [1, 6],
-          "damage_bonus": 2,
-          "description": "A small, sneaky humanoid with a crude dagger.",
-          "resistances": [],
-          "weaknesses": ["Slashing"]
-      },
-      "Orc": {
-          "name": "Orc",
-          "hp": 15,
-          "ac": 13,
-          "attack_bonus": 5,
-          "damage_dice": [1, 8],
-          "damage_bonus": 3,
-          "description": "A muscular orc wielding a heavy battle axe.",
-          "resistances": [],
-          "weaknesses": []
-      },
-      "Skeleton": {
-          "name": "Skeleton",
-          "hp": 13,
-          "ac": 13,
-          "attack_bonus": 4,
-          "damage_dice": [1, 6],
-          "damage_bonus": 2,
-          "description": "A reanimated skeleton with a chipped sword.",
-          "resistances": ["Piercing"],
-          "weaknesses": ["Bludgeoning"]
-      },
-      "Zombie": {
-          "name": "Zombie",
-          "hp": 22,
-          "ac": 8,
-          "attack_bonus": 3,
-          "damage_dice": [1, 6],
-          "damage_bonus": 1,
-          "description": "A slow-moving undead with rotting flesh.",
-          "resistances": ["Poison"],
-          "weaknesses": ["Radiant"]
-      },
-      "Wolf": {
-          "name": "Wolf",
-          "hp": 11,
-          "ac": 13,
-          "attack_bonus": 4,
-          "damage_dice": [1, 6],
-          "damage_bonus": 2,
-          "description": "A feral wolf with sharp teeth.",
-          "resistances": [],
-          "weaknesses": ["Slashing"]
-      },
-      "Bandit": {
-          "name": "Bandit",
-          "hp": 11,
-          "ac": 12,
-          "attack_bonus": 3,
-          "damage_dice": [1, 6],
-          "damage_bonus": 1,
-          "description": "A rogue highwayman looking for easy prey.",
-          "resistances": [],
-          "weaknesses": []
-      },
-      "Giant Spider": {
-          "name": "Giant Spider",
-          "hp": 26,
-          "ac": 14,
-          "attack_bonus": 5,
-          "damage_dice": [1, 8],
-          "damage_bonus": 3,
-          "description": "A monstrous spider with venomous fangs.",
-          "resistances": ["Poison"],
-          "weaknesses": ["Fire"]
-      },
-      "Kobold": {
-          "name": "Kobold",
-          "hp": 5,
-          "ac": 12,
-          "attack_bonus": 4,
-          "damage_dice": [1, 4],
-          "damage_bonus": 2,
-          "description": "A small, dragon-like humanoid with a spear.",
-          "resistances": [],
-          "weaknesses": ["Bludgeoning"]
-      },
-      "Hobgoblin": {
-          "name": "Hobgoblin",
-          "hp": 11,
-          "ac": 18,
-          "attack_bonus": 3,
-          "damage_dice": [1, 8],
-          "damage_bonus": 1,
-          "description": "A disciplined and well-armored warrior.",
-          "resistances": [],
-          "weaknesses": []
-      },
-      "Mimic": {
-          "name": "Mimic",
-          "hp": 58,
-          "ac": 12,
-          "attack_bonus": 5,
-          "damage_dice": [1, 8],
-          "damage_bonus": 3,
-          "description": "A shapeshifting creature disguised as a treasure chest.",
-          "resistances": ["Bludgeoning"],
-          "weaknesses": ["Fire"]
-      },
-    "Slime": {
-        "name": "Slime",
-        "hp": 15,
-        "ac": 10,
-        "attack_bonus": 3,
-        "damage_dice": [1, 6],
-        "damage_bonus": 1,
-        "description": "A weak gelatinous creature known by many beginner adventurers. Often found in caves and dungeons.",
-        "resistances": ["Bludgeoning", "Poison"],
-        "weaknesses": ["Fire", "Ice", "Electric"],
-        "special_abilities": [
-            {
-                "name": "Split",
-                "description": "When the Slime is hit by a slashing weapon or spell, it splits into two smaller slimes, each with half of its HP (rounded down).",
-                "chance": "20%"
+    "enemies": {
+        "Goblin": {
+            "name": "Goblin",
+            "hp": 7,
+            "ac": 15,
+            "attack_bonus": 4,
+            "damage_dice": [1, 6],
+            "damage_bonus": 2,
+            "description": "A small, sneaky humanoid with a crude dagger.",
+            "resistances": [],
+            "weaknesses": ["Slashing"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 3],
+                  "chance": 0.8
+              }
             }
-        ]
+        },
+        "Orc": {
+            "name": "Orc",
+            "hp": 15,
+            "ac": 13,
+            "attack_bonus": 5,
+            "damage_dice": [1, 8],
+            "damage_bonus": 3,
+            "description": "A muscular orc wielding a heavy battle axe.",
+            "resistances": [],
+            "weaknesses": [],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [2, 4],
+                  "chance": 0.7
+              }
+            }
+        },
+        "Skeleton": {
+            "name": "Skeleton",
+            "hp": 13,
+            "ac": 13,
+            "attack_bonus": 4,
+            "damage_dice": [1, 6],
+            "damage_bonus": 2,
+            "description": "A reanimated skeleton with a chipped sword.",
+            "resistances": ["Piercing"],
+            "weaknesses": ["Bludgeoning"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 2],
+                  "chance": 0.5
+              }
+            }
+        },
+        "Zombie": {
+            "name": "Zombie",
+            "hp": 22,
+            "ac": 8,
+            "attack_bonus": 3,
+            "damage_dice": [1, 6],
+            "damage_bonus": 1,
+            "description": "A slow-moving undead with rotting flesh.",
+            "resistances": ["Poison"],
+            "weaknesses": ["Radiant"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 3],
+                  "chance": 0.6
+              }
+            }
+        },
+        "Wolf": {
+            "name": "Wolf",
+            "hp": 11,
+            "ac": 13,
+            "attack_bonus": 4,
+            "damage_dice": [1, 6],
+            "damage_bonus": 2,
+            "description": "A feral wolf with sharp teeth.",
+            "resistances": [],
+            "weaknesses": ["Slashing"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 2],
+                  "chance": 0.4
+              }
+            }
+        },
+        "Bandit": {
+            "name": "Bandit",
+            "hp": 11,
+            "ac": 12,
+            "attack_bonus": 3,
+            "damage_dice": [1, 6],
+            "damage_bonus": 1,
+            "description": "A rogue highwayman looking for easy prey.",
+            "resistances": [],
+            "weaknesses": [],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 3],
+                  "chance": 0.5
+              }
+            }
+        },
+        "Giant Spider": {
+            "name": "Giant Spider",
+            "hp": 26,
+            "ac": 14,
+            "attack_bonus": 5,
+            "damage_dice": [1, 8],
+            "damage_bonus": 3,
+            "description": "A monstrous spider with venomous fangs.",
+            "resistances": ["Poison"],
+            "weaknesses": ["Fire"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [2, 5],
+                  "chance": 0.7
+              }
+            }
+        },
+        "Kobold": {
+            "name": "Kobold",
+            "hp": 5,
+            "ac": 12,
+            "attack_bonus": 4,
+            "damage_dice": [1, 4],
+            "damage_bonus": 2,
+            "description": "A small, dragon-like humanoid with a spear.",
+            "resistances": [],
+            "weaknesses": ["Bludgeoning"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 2],
+                  "chance": 0.6
+              }
+            }
+        },
+        "Hobgoblin": {
+            "name": "Hobgoblin",
+            "hp": 11,
+            "ac": 18,
+            "attack_bonus": 3,
+            "damage_dice": [1, 8],
+            "damage_bonus": 1,
+            "description": "A disciplined and well-armored warrior.",
+            "resistances": [],
+            "weaknesses": [],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 3],
+                  "chance": 0.5
+              }
+            }
+        },
+        "Mimic": {
+            "name": "Mimic",
+            "hp": 58,
+            "ac": 12,
+            "attack_bonus": 5,
+            "damage_dice": [1, 8],
+            "damage_bonus": 3,
+            "description": "A shapeshifting creature disguised as a treasure chest.",
+            "resistances": ["Bludgeoning"],
+            "weaknesses": ["Fire"],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [3, 6],
+                  "chance": 0.9
+              }
+            }
+        },
+        "Slime": {
+            "name": "Slime",
+            "hp": 15,
+            "ac": 10,
+            "attack_bonus": 3,
+            "damage_dice": [1, 6],
+            "damage_bonus": 1,
+            "description": "A weak gelatinous creature known by many beginner adventurers. Often found in caves and dungeons.",
+            "resistances": ["Bludgeoning", "Poison"],
+            "weaknesses": ["Fire", "Ice", "Electric"],
+            "special_abilities": [
+                {
+                    "name": "Split",
+                    "description": "When hit by slashing, splits into two smaller slimes, each with half HP.",
+                    "chance": "20%"
+                }
+            ],
+            "drops": {
+              "Energy Dust": {
+                  "quantity": [1, 4],
+                  "chance": 0.7
+              }
+            }
+        }
     }
   }
-}
+  

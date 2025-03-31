@@ -16,6 +16,7 @@
       "Whiskey": { "price": 12, "stock": 5 }
     }
   },
+
   "King Ipsum": {
     "name": "King Ipsum",
     "location": "Castle Lorum",
@@ -29,24 +30,29 @@
       "Do not waste my time with trivial matters."
     ]
   },
-  "Merchant": {
-    "name": "Merchant",
-    "location": "Marketplace",
-    "role": "merchant",
-    "personality": "jovial",
-    "mood": 4,
-    "voice": "bubbly and fast-talking",
-    "dialogue": [
-      "Step right up! The best deals in town!",
-      "Buy now or miss out forever!",
-      "Everything must go—except me!"
-    ],
-    "inventory": {
-      "Health Potion": { "price": 15, "stock": 8 },
-      "Lockpick": { "price": 3, "stock": 20 },
-      "Magic Scroll": { "price": 30, "stock": 3 }
-    }
+
+"Merchant": {
+  "name": "Merchant",
+  "location": "Marketplace",
+  "role": "merchant",
+  "personality": "jovial",
+  "mood": 4,
+  "voice": "bubbly and fast-talking",
+  "dialogue": [
+    "Step right up! The best deals in town!",
+    "Buy now or miss out forever!",
+    "Everything must go—except me!"
+  ],
+  "inventory": {
+    "Health Potion": { "price": 15, "stock": 8 },
+    "Lockpick": { "price": 3, "stock": 20 },
+    "Magic Scroll": { "price": 30, "stock": 3 }
   },
+  "exchange_rate": {
+    "Energy Dust": 5
+  }
+},
+
   "Old Sage": {
     "name": "Old Sage",
     "location": "Tower of Wisdom",

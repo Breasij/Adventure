@@ -21,147 +21,83 @@ def get_tone_from_mood(mood):
 
 def infer_mood_change_from_input(player_input, current_mood):
     prompt = (
-        f"An NPC currently feels {get_tone_from_mood(current_mood)} toward the player.\n"
-        f"The player just said: \"{player_input}\"\n"
-        "How should the NPC feel now? Respond with one of: enthusiastic, friendly, neutral, irritated, hostile."
+        f"NPC feels {get_tone_from_mood(current_mood)}.\n"
+        f"Player said: '{player_input}'\n"
+        "NPC mood now? enthusiastic, friendly, neutral, irritated, hostile."
     )
     response = query_llm(prompt).strip().lower()
-    tones = {
-        "enthusiastic": 7,
-        "friendly": 3,
-        "neutral": 0,
-        "irritated": -3,
-        "hostile": -7
-    }
+    tones = {"enthusiastic": 7, "friendly": 3, "neutral": 0, "irritated": -3, "hostile": -7}
     return tones.get(response, current_mood)
 
-def npc_greeting(npc, player_name):
-    name = npc.get('name', 'NPC')
-    personality = npc.get('personality', '')
-    mood_value = npc.get('mood', 0)
-    tone = get_tone_from_mood(mood_value)
-    npc['tone'] = tone
-
-    if 'merchant' in npc.get('role', '').lower():
-        if tone in ['friendly', 'enthusiastic']:
-            return f"{name}: Hello! Welcome, traveler. Please, take a look at my wares."
-        elif tone == 'neutral':
-            return f"{name}: Hello. Looking for something specific?"
-        elif tone in ['irritated', 'hostile']:
-            return f"{name}: What do you want? Buy something or move along."
+def handle_exchange(npc, player, item_name, quantity):
+    exchange_rate = npc.get('exchange_rate', {})
+    if item_name in exchange_rate:
+        player_qty = player.inventory.get(item_name, 0)
+        if player_qty >= quantity:
+            total_gold = exchange_rate[item_name] * quantity
+            player.inventory[item_name] -= quantity
+            if player.inventory[item_name] <= 0:
+                del player.inventory[item_name]
+            player.gold += total_gold
+            npc['mood'] += 1
+            return f"{npc['name']} buys {quantity} {item_name} for {total_gold} gold."
         else:
-            return f"{name}: Hello."
+            return f"You don't have enough {item_name}."
     else:
-        if tone in ['friendly', 'enthusiastic']:
-            return f"{name}: Hello there! {personality.capitalize()}" if personality else f"{name}: Hello there! It's good to see you."
-        elif tone == 'neutral':
-            return f"{name}: Hello."
-        elif tone == 'irritated':
-            return f"{name}: Yes? What is it?"
-        elif tone == 'hostile':
-            return f"{name}: What do you want?"
-        else:
-            return f"{name}: Hello."
+        return f"{npc['name']} doesn't buy {item_name}."
+
+def merchant_interaction(npc, player, action='list', item_name=None):
+    inventory = npc.get('inventory', {})
+    
+    if action == 'list':
+        return "; ".join([f"{item} - {details['price']} gold" for item, details in inventory.items()])
+
+    elif action == 'buy':
+        matched_item = next((item for item in inventory if item.lower() == item_name.lower()), None)
+        if not matched_item:
+            return f"{npc['name']} doesn't have that item."
+        
+        item_data = inventory[matched_item]
+        price = item_data['price']
+        stock = item_data.get('stock', 1)
+        
+        if stock <= 0:
+            return f"{npc['name']} is out of {matched_item}."
+        if player.gold < price:
+            return "You don't have enough gold."
+        
+        player.gold -= price
+        player.inventory[matched_item] = player.inventory.get(matched_item, 0) + 1
+        inventory[matched_item]['stock'] -= 1
+        npc['mood'] += 1
+        
+        return f"Purchased {matched_item} for {price} gold."
+
+def npc_greeting(npc, player_name):
+    tone = get_tone_from_mood(npc.get('mood', 0))
+    npc['tone'] = tone
+    greeting_prompt = (
+        f"You're {npc['name']} ({npc['role']}). Mood: {tone}. Greet adventurer {player_name} briefly."
+    )
+    return f"{npc['name']}: {query_llm(greeting_prompt)}"
 
 def npc_conversation(npc, player_input, player_name, history=None):
-    name = npc.get('name', 'NPC')
-    personality = npc.get('personality', '').lower()
-    role = npc.get('role', 'npc').lower()
-    mood = npc.get('mood', 0)
-
-    mood = infer_mood_change_from_input(player_input, mood)
-    npc['mood'] = max(-10, min(10, mood))
+    npc['mood'] = infer_mood_change_from_input(player_input, npc.get('mood', 0))
     npc['tone'] = get_tone_from_mood(npc['mood'])
 
     if history is None:
         history = []
-
     history.append(f"Player: {player_input.strip()}")
 
-    tone = npc['tone']
-    tone_style_map = {
-        "enthusiastic": "You speak with passion, often smiling or laughing. You get excited easily.",
-        "friendly": "You're warm and casual. You use relaxed and open language.",
-        "neutral": "You respond plainly and without much emotion.",
-        "irritated": "You're annoyed or impatient. You're sarcastic, snappy, and clearly frustrated.",
-        "hostile": "You're angry, aggressive, or threatening. You might raise your voice or insult back."
-    }
-    emotional_state = tone_style_map.get(tone, "You respond naturally.")
-
-    quirks = {
-        'grumpy': "You're naturally short-tempered and roll your eyes often.",
-        'friendly': "You're warm and enjoy connecting with people.",
-        'jovial': "You joke and laugh even in tense moments.",
-        'serious': "You're to-the-point and don't waste time.",
-        'sarcastic': "You respond with biting wit or mockery.",
-        'aloof': "You're emotionally distant and hard to engage."
-    }
-    quirk = quirks.get(personality, "")
-
     persona = (
-        f"You are {name}, a {personality} {role} in a fantasy world.\n"
-        f"Current mood: {tone}. {emotional_state} {quirk}\n"
-        f"You're in a real-time conversation with an adventurer named {player_name}.\n"
-        f"Reply in character. Never repeat yourself. Never restate what the player said.\n"
-        f"React like a real person in this world, using your mood and personality.\n"
-        f"If you're angry, lash out. If you're flattered, soften. Stay grounded."
+        f"{npc['name']} is a {npc.get('personality', '')} {npc['role']} with mood {npc['tone']}.\n"
+        f"Inventory: {npc.get('inventory', {})}\n"
+        f"Exchange rates: {npc.get('exchange_rate', {})}\n"
+        f"In conversation with {player_name}. Respond in character."
     )
-
     conversation_context = "\n".join(history[-6:])
-    prompt = f"{persona}\n\n{conversation_context}\n{name}:"
-
-    response = query_llm(prompt)
-    npc_reply = response.strip().split("\n")[0] if response else "..."
-    history.append(f"{name}: {npc_reply}")
+    prompt = f"{persona}\n{conversation_context}\n{npc['name']}:"
+    npc_reply = query_llm(prompt).split("\n")[0].strip()
+    history.append(f"{npc['name']}: {npc_reply}")
 
     return npc_reply, history
-
-def merchant_interaction(npc, player, action='list', item_name=None):
-    if 'inventory' not in npc or not isinstance(npc['inventory'], dict):
-        return "This NPC has no items for sale."
-
-    name = npc.get('name', 'Merchant')
-    inventory = npc['inventory']
-    action = action.lower()
-
-    if action == 'list':
-        if not inventory:
-            return "No items available."
-        items_str = []
-        for item, data in inventory.items():
-            price = data['price'] if isinstance(data, dict) else data
-            items_str.append(f"{item} - {price} gold")
-        return "; ".join(items_str)
-
-    elif action == 'buy':
-        if player is None:
-            return "No player specified for purchase."
-        if not item_name or item_name not in inventory:
-            polite = (npc.get('tone') not in ['hostile', 'irritated'])
-            return f"I don't have that item, {'sir' if polite else 'buddy'}."
-
-        item_data = inventory[item_name]
-        price = item_data['price'] if isinstance(item_data, dict) else item_data
-        stock = item_data.get('stock', None) if isinstance(item_data, dict) else None
-        player_gold = player.get('gold', 0)
-
-        if player_gold < price:
-            return "You don't have enough gold for that."
-        if stock is not None and stock <= 0:
-            return "Sorry, I'm out of stock for that item."
-
-        player['gold'] = player_gold - price
-        player_inventory = player.get('inventory', {})
-        player_inventory[item_name] = player_inventory.get(item_name, 0) + 1
-        player['inventory'] = player_inventory
-        if stock is not None:
-            inventory[item_name]['stock'] -= 1
-        npc['mood'] = npc.get('mood', 0) + 1
-        npc['tone'] = get_tone_from_mood(npc['mood'])
-        return f"Thank you for your purchase of {item_name}!"
-
-    elif action == 'sell':
-        return "I don't buy items, sorry."
-
-    else:
-        return "I can't help with that."

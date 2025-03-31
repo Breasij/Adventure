@@ -2,7 +2,7 @@ import random
 import json
 
 class Enemy:
-    def __init__(self, name, hp, ac, attack_bonus, damage_dice, damage_bonus, description, resistances, weaknesses):
+    def __init__(self, name, hp, ac, attack_bonus, damage_dice, damage_bonus, description, resistances, weaknesses, drops=None, special_abilities=None):
         self.name = name
         self.hp = hp
         self.ac = ac
@@ -10,11 +10,13 @@ class Enemy:
         self.damage_dice = damage_dice
         self.damage_bonus = damage_bonus
         self.description = description
-        self.resistances = resistances
-        self.weaknesses = weaknesses
-
+        self.resistances = resistances or []
+        self.weaknesses = weaknesses or []
+        self.drops = drops or {}
+        self.special_abilities = special_abilities or []
+    
     def attack(self):
-        damage = random.randint(self.damage_dice[0], self.damage_dice[1]) + self.damage_bonus
+        damage = sum(random.randint(1, die) for die in self.damage_dice) + self.damage_bonus
         return damage
 
     def __str__(self):

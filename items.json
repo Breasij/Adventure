@@ -1,16 +1,47 @@
 {
-  "weapons": {
-    "Rusty Sword": {
-      "name": "Rusty Sword",
-      "damage_dice": [1, 6],
-      "damage_bonus": 1,
-      "description": "An old sword with a rusty blade. Not very sharp."
+"weapons": {
+  "Rusty Sword": {
+    "name": "Rusty Sword",
+    "damage_dice": [1, 6],
+    "damage_bonus": 1,
+    "slot": "weapon",
+    "description": "An old sword with a rusty blade. Not very sharp."
+  },
+  "Steel Axe": {
+    "name": "Steel Axe",
+    "damage_dice": [1, 8],
+    "damage_bonus": 2,
+    "slot": "weapon",
+    "description": "A reliable steel axe, capable of dealing serious damage."
+  }
+  
+  },
+  "armor": {
+    "Leather Armor": {
+      "name": "Leather Armor",
+      "slot": "armor",
+      "ac_bonus": 2,
+      "description": "Simple but sturdy leather armor providing moderate protection."
     },
-    "Steel Axe": {
-      "name": "Steel Axe",
-      "damage_dice": [1, 8],
-      "damage_bonus": 2,
-      "description": "A reliable steel axe, capable of dealing serious damage."
+    "Chainmail": {
+      "name": "Chainmail",
+      "slot": "armor",
+      "ac_bonus": 4,
+      "description": "Heavy chainmail armor providing excellent protection."
+    }
+  },
+  "accessories": {
+    "Ring of Strength": {
+      "name": "Ring of Strength",
+      "slot": "accessory",
+      "attack_bonus": 1,
+      "description": "A magical ring that slightly increases your physical strength."
+    },
+    "Amulet of Health": {
+      "name": "Amulet of Health",
+      "slot": "accessory",
+      "hp_bonus": 10,
+      "description": "An amulet that magically enhances the wearer's vitality."
     }
   },
   "potions": {
@@ -21,9 +52,11 @@
     }
   },
   "misc": {
-    "Rope": {
-      "name": "Rope",
-      "description": "Useful for climbing and binding things."
+    "Energy Dust": {
+      "name": "Energy Dust",
+      "description": "A shimmering dust dropped by magical creatures. Valued by merchants and mages alike.",
+      "mana_restored": 10,
+      "value": 5
     }
   }
 }
