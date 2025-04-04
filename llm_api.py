@@ -2,7 +2,7 @@ import requests
 import json
 
 OLLAMA_URL = 'http://localhost:11434/api/generate'
-MODEL = 'mistral'  # Changed from 'orca-mini' to 'mistral'
+MODEL = 'mistral' 
 
 def query_llm(prompt):
     data = {

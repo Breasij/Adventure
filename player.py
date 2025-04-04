@@ -59,13 +59,7 @@ class Player:
         weapon = self.equipment.get("weapon")
         if weapon:
             self.attack_power += weapon.get("damage_bonus", 0)
-
-        # Future: armor or accessory effects
-        armor = self.equipment.get("armor")
-        if armor:
-            # Armor stat handling goes here
-            pass
-
+            
     def attack(self):
         weapon = self.equipment.get("weapon")
         if weapon:

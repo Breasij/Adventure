@@ -1,7 +1,4 @@
-import json
-
-with open("items.json", "r") as f:
-    ITEMS = json.load(f)
+from utils import GAME_DATA
 
 def get_item(category, item_name):
-    return ITEMS.get(category, {}).get(item_name)
+    return GAME_DATA.get_item(category, item_name)
