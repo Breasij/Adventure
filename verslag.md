@@ -1,55 +1,116 @@
-Ik ben nu bezig met het maken van een terminal text adventure RPG. Eerst was ik met het project als hobby begonnen, maar ik vond het een leuk en idee heb toen gekozen om een LLM te gebruiken en het mijn project te maken. Hierbij maak ik gebruik van python en json files. Er moest een project gemaakt worden en dit wilde ik combineren met andere punten mogelijkheden. Typescript werd na onderzoek van diverse websites (reddit bijvoorbeeld) en anderen ervaren met text-based programma's aangeraden om te gebruikten, maar als eigen keus wilde ik met python leren werken, ik had ook nooit met json files gewerkt, dus vandaar de keuze. Toen ik eerder met het het programma bezig was verloor ik veel progressie en moest ik opnieuw beginnen door fouten die ik had gemaakt. Hierdoor heb ik er ook gekozen om een start te maken met het leren werken van GitHub.
- 
-In het project moet de gebruiker doormiddel van de terminal en input een adventure kunnen spelen en kunnen communiceren met de LLM. 
+# Eisen en Wensen
 
-Waarom python
+*De eisen en wensen zijn verwerkt in de user stories.*
 
-*Voordelen*
-- Snel prototypen van mechanics
-- Uitstekende LLM/AI integratie
-- Makkelijk text processing
-- Grote community voor hulp
-- Veel tutorials en voorbeelden
-- Flexibel in gebruik
-- Ideaal voor text-based games
+De gebruiker wil een **text-based adventure RPG** met **replayability**. Er is geen voorkeur opgegeven voor programmeertaal of visuele stijl, wat volledige creatieve vrijheid geeft. De beschikbare tijd voor het project is **2 weken**.
 
-*Nadelen*:
-- Langzamer dan andere talen (C++, Java)
-- Gebruikt meer geheugen
-- Fouten worden pas tijdens het runnen gevonden
+## Eisen van de klant/gebruiker
 
-De nadelen zij niet kritiek omdat
+---
 
-Het is een kleiner project
-Performance is niet kritiek
-Goed voor text processing en LLM integratie
+### ✅ De gebruiker wil een personage kunnen creëren
 
+- **Wie:** Bruno  
+- **Prioriteit:** **HOOG**  
+- **Tijd:** 1 dag (1/14)  
+- **Realistisch:** Ja. Dit is haalbaar met een `Player` class/object. Zelfs zonder ervaring in Python moet dit lukken door kennis van OOP in andere talen.
 
-**Eisen en wensen**
-In het project moet de gebruiker doormiddel van de terminal en input een adventure kunnen spelen en kunnen communiceren met de LLM. 
+---
 
-Als gebruiker wil een online back-up hebben, het project en aanpassingen kunnen volgen.
-Wie: Bruno
-Prioriteit: **HOOG**
-Tijd: 1 dag
+### ✅ De gebruiker wil verschillende locaties bezoeken
 
-Als gebruiker wil ik een personage kunnen creeeren
-Wie: Bruno
-Prioriteit: **HOOG**
-Tijd: 1 dag
+- **Wie:** Bruno  
+- **Prioriteit:** **HOOG**  
+- **Tijd:** 1 dag (2/14)  
+- **Realistisch:** Ja. Met lists of JSON-bestanden kan dit binnen een dag worden gerealiseerd.
 
-Als gebruiker wil in verschillende locaties bezoeken
-Wie: Bruno
-Prioriteit: **Hoog**
-Tijd: 1 dag
+---
 
-Als gebruiker wil ik een werkend combat systeem hebben vergelijkbaar met het DND (Dungeons and Dragons) systeem
-Wie: Bruno
-Prioriteit: **HOOG**
-Tijd 1 dag
+### ✅ De gebruiker wil een werkend combat-systeem vergelijkbaar met Dungeons & Dragons
 
-Als gebruiker wil ik classes kiezen of worden toegewezen
-Wie: Bruno
-Prioriteit: **LAAG**
-Tijd: 4 weken
+- **Wie:** Bruno  
+- **Prioriteit:** **HOOG**  
+- **Tijd:** 3 dagen (5/14)  
+- **Realistisch:** Mogelijk, maar onzeker. Er is beperkte ervaring met het bouwen van combat-systemen. De logica achter het D&D-systeem vereist extra onderzoek.
+
+---
+
+### ✅ De gebruiker wil een online back-up en mogelijkheid tot het volgen van wijzigingen
+
+- **Wie:** Bruno  
+- **Prioriteit:** **HOOG**  
+- **Tijd:** 2 uur (5/14)  
+- **Realistisch:** Ja. Tools zoals **GitHub** maken dit eenvoudig en er zijn voldoende tutorials beschikbaar.
+
+---
+
+### ✅ De gebruiker wil classes kunnen kiezen of toegewezen krijgen
+
+- **Wie:** Bruno  
+- **Prioriteit:** **MIDDEL**  
+- **Tijd:** 2 dagen (7-8/14)  
+- **Realistisch:** Ja. Online uitleg is beschikbaar. Deze functionaliteit maakt het combatsysteem wel complexer.
+
+---
+
+# Ontwerp
+
+### *De user stories zijn vertaald naar een passend, eenduidig en volledig ontwerp.*
+
+De opdracht: een **text-based adventure RPG met replayability en een back-upmogelijkheid**. Hiervoor is gekozen voor de volgende tools en technologieën:
+
+- **Taal:** Python  
+- **Dataopslag:** JSON-bestanden  
+- **AI-integratie:** LLM (Large Language Models)  
+- **Versiebeheer:** GitHub  
+- **IDE:** Visual Studio Code
+
+---
+
+## Waarom Python?
+
+### Voordelen:
+- Snel prototypen van mechanics  
+- Uitstekende LLM/AI-integratie  
+- Eenvoudige tekstverwerking  
+- Grote community en veel tutorials  
+- Flexibel en geschikt voor text-based games  
+
+### Nadelen:
+- Langzamer dan C++ of Java  
+- Hogere geheugengebruik  
+- Fouten worden pas zichtbaar tijdens het uitvoeren  
+
+ **Opmerking:** 
+ Deze nadelen zijn niet kritisch, omdat:
+ - Het project relatief klein is  
+ - Performance geen sleutelrol speelt  
+ - De taal juist uitblinkt in tekstverwerking en AI-integratie  
+
+---
+
+## Waarom JSON?
+
+### Voordelen:
+- **Leesbaar en bewerkbaar:**  
+  Makkelijk aan te passen, ook voor niet-programmeurs. Handig voor het handmatig toevoegen van NPC’s, vijanden, items en locaties.  
+- **Lichtgewicht:**  
+  Snelle laadtijden, ideaal voor kleinere games.  
+- **Scheidt data van logica:**  
+  Houdt je code schoon en overzichtelijk.  
+- **Platformonafhankelijk:**  
+  Ondersteund door vrijwel elke programmeertaal.  
+- **Makkelijk te debuggen:**  
+  Fouten zijn snel te vinden en op te lossen.
+
+### Nadelen:
+- **Geen validatie of typecontrole:**  
+  Typfouten kunnen pas bij runtime fouten veroorzaken.  
+  _Voorbeeld:_ `"Magic Scroll "` i.p.v. `"Magic Scroll"` faalt bij opzoeken.
+- **Beperkt bij complexe structuren:**  
+  Relaties tussen NPC’s of quests moeten handmatig worden afgehandeld.  
+- **Minder geschikt voor grotere projecten:**  
+  Bij uitbreiding kan onderhoud lastiger worden.
+
+---
 
