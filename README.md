@@ -1,4 +1,4 @@
-# Text Adventure Game – Educatief Project
+# Text Adventure Game 
 
 Dit interactieve tekstavontuur is ontwikkeld als leerproject, bedoeld om te experimenteren met Large Language Models (LLMs) en moderne softwareontwikkeling. Het project laat zien hoe AI kan worden toegepast in gameontwikkeling en is bedoeld als praktische manier om te leren werken met LLMs.
 
