@@ -55,7 +55,7 @@ pip install -r requirements.txt
 ollama pull mistral
 ```
 
-## 🎮 Het Spel Starten
+## Het Spel Starten
 
 ### Web Versie (Aanbevolen)
 1. Start de server:
@@ -70,21 +70,21 @@ python app.py
 python main.py
 ```
 
-## 🎯 Leerdoelen
+## Leerdoelen
 
 - **LLM Integratie**: Begrip van hoe LLMs kunnen worden geïntegreerd in applicaties
 - **AI Interactie**: Leren werken met AI-gestuurde dialogen
 - **Software Development**: Praktijkervaring met moderne ontwikkeltools
 - **Game Design**: Inzicht in het ontwerpen van interactieve ervaringen
 
-## 🗺️ Beschikbare Locaties
+## Beschikbare Locaties
 
 - **Marketplace**: Het centrale handelscentrum
 - **Arena**: Voor gevechten en uitdagingen
 - **Tavern**: Voor informatie en rust
 - **Castle Lorum**: Ontmoet de koning
 
-## 🎮 Besturing
+## Besturing
 
 ### Web Interface
 - Gebruik de knoppen op het scherm voor beweging
@@ -97,20 +97,20 @@ python main.py
 - Gebruik 'i' voor inventory
 - Typ 'q' om te stoppen
 
-## 🛠️ Technische Details
+## Technische Details
 
 - **Backend**: Python met Flask
 - **Frontend**: HTML, CSS, JavaScript
 - **AI**: Ollama met Mistral model voor NPC interacties
 - **Data Storage**: JSON bestanden voor game data
 
-## 📚 Leermaterialen
+## Leermaterialen
 
 - [Ollama Documentatie](https://ollama.ai/docs)
 - [Flask Documentatie](https://flask.palletsprojects.com/)
 - [Python Documentatie](https://docs.python.org/)
 
-## ⚠️ Bekende Issues
+## Bekende Issues
 
 - Zorg ervoor dat Ollama draait voordat je het spel start
 - Vernieuw de pagina als je een "Failed to move" error krijgt
